@@ -11,12 +11,7 @@ import (
 type ContentLine struct {
 	Name   string
 	Value  string
-	Params []*Param
-}
-
-type Param struct {
-	Name  string
-	Value string
+	Params map[string][]string
 }
 
 var ErrInvalidContentLine error = fmt.Errorf("failed to parse content line")
@@ -35,16 +30,13 @@ func Scan(line string) (*ContentLine, error) {
 
 	name := lineData[1]
 	value := lineData[len(lineData)-1]
-	params := make([]*Param, 0)
+	params := make(map[string][]string)
 	for _, rawParam := range strings.Split(lineData[2], ";")[1:] {
-		name, value, found := strings.Cut(rawParam, "=")
+		name, values, found := strings.Cut(rawParam, "=")
 		if !found {
 			return nil, ErrInvalidParam
 		}
-		params = append(params, &Param{
-			Name:  name,
-			Value: value,
-		})
+		params[name] = strings.Split(values, ",")
 	}
 	return &ContentLine{
 		Name:   name,
@@ -53,14 +45,14 @@ func Scan(line string) (*ContentLine, error) {
 	}, nil
 }
 
-func (cl *ContentLine) ToString() string {
+func (cl *ContentLine) String() string {
 	result := new(strings.Builder)
 	result.WriteString(fmt.Sprintf("Name:     %s\n", cl.Name))
 	result.WriteString(fmt.Sprintf("Value:    %s\n", cl.Value))
-	for i, param := range cl.Params {
+	for k, v := range cl.Params {
 		result.WriteString(fmt.Sprintf(
-			"Param %2d: %s=%s\n",
-			i, param.Name, param.Value,
+			"%s:%v\n",
+			k, v,
 		))
 	}
 	return result.String()

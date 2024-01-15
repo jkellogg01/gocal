@@ -1,29 +1,33 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"log"
 	"os"
 	"regexp"
-	"strings"
 )
 
 func main() {
-	data, err := os.ReadFile("test/data/josh-calendar.ics")
+	data, err := os.ReadFile("test/data/abe-lincoln.ics")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	lines := strings.Split(Unfold(string(data)), "\r\n")
-	for _, line := range lines {
-		cl, err := Scan(line)
-		if err != nil {
-			log.Fatal(err)
-		}
-		// if len(cl.Params) > 0 {
-		fmt.Println(cl.ToString())
-		// }
+	iCalComponent, err := Compile(Unfold(string(data)))
+	if err != nil {
+		log.Fatal(err)
 	}
+	output, err := json.MarshalIndent(iCalComponent, "", "\t")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	outfile, err := os.Create("./output/test.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	outfile.Write(output)
 }
 
 func Unfold(data string) string {

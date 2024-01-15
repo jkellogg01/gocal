@@ -1,0 +1,83 @@
+{
+	"props": {
+		"CALSCALE": {
+			"value": "GREGORIAN",
+			"params": {}
+		},
+		"METHOD": {
+			"value": "PUBLISH",
+			"params": {}
+		},
+		"PRODID": {
+			"value": "-//ZContent.net//Zap Calendar 1.0//EN",
+			"params": {}
+		},
+		"VERSION": {
+			"value": "2.0",
+			"params": {}
+		}
+	},
+	"children": {
+		"VEVENT": {
+			"props": {
+				"CATEGORIES": {
+					"value": "U.S. Presidents,Civil War People",
+					"params": {}
+				},
+				"DESCRIPTION": {
+					"value": "Born February 12\\, 1809\\nSixteenth President (1861-1865)\\n\\n\\n\\nhttp://AmericanHistoryCalendar.com",
+					"params": {}
+				},
+				"DTEND": {
+					"value": "20080213",
+					"params": {}
+				},
+				"DTSTAMP": {
+					"value": "20150421T141403",
+					"params": {}
+				},
+				"DTSTART": {
+					"value": "20080212",
+					"params": {}
+				},
+				"GEO": {
+					"value": "37.5739497;-85.7399606",
+					"params": {}
+				},
+				"LOCATION": {
+					"value": "Hodgenville\\, Kentucky",
+					"params": {}
+				},
+				"RRULE": {
+					"value": "FREQ=YEARLY;INTERVAL=1;BYMONTH=2;BYMONTHDAY=12",
+					"params": {}
+				},
+				"SEQUENCE": {
+					"value": "0",
+					"params": {}
+				},
+				"STATUS": {
+					"value": "CONFIRMED",
+					"params": {}
+				},
+				"SUMMARY": {
+					"value": "Abraham Lincoln",
+					"params": {}
+				},
+				"TRANSP": {
+					"value": "TRANSPARENT",
+					"params": {}
+				},
+				"UID": {
+					"value": "c7614cff-3549-4a00-9152-d25cc1fe077d",
+					"params": {}
+				},
+				"URL": {
+					"value": "http://americanhistorycalendar.com/peoplecalendar/1,328-abraham-lincoln",
+					"params": {}
+				}
+			},
+			"children": {}
+		}
+	}
+}
